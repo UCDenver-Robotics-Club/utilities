@@ -2,6 +2,7 @@
 //#include <vectordrive.h>
 //#include <stdint.h>
 #include <PRIZM.h>
+#define VERSION 1
 
 PRIZM prizm;
 
@@ -29,14 +30,21 @@ void setup()
 void loop() 
 {
   // put your main code here, to run repeatedly:
-  Serial.print("encoder 1:");
-  Serial.println(prizm.readEncoderCount(1));
-  Serial.print("encoder 2:");
-  Serial.println(prizm.readEncoderCount(2));
+//  Serial.print("encoder 1:");
+//  Serial.println(prizm.readEncoderCount(1));
+//  Serial.print("encoder 2:");
+//  Serial.println(prizm.readEncoderCount(2));
 }
 
 void serialEvent()
 {
+//  if(Serial.readBytes() > 0) // if there's data in the serial bus
+//  {
+//    
+//  }
+  
+//   get values 1 value at a time  
+//
    char buff = Serial.read();
 
    if(buff == 'w')
@@ -65,6 +73,10 @@ void serialEvent()
    if(buff == 'r')
    {
       prizm.resetEncoders();
+   }
+   if(buff == 'v')
+   {
+      Serial.println(VERSION);
    }
 }
 
