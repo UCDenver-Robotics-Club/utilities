@@ -76,7 +76,7 @@ void serialEvent()
    }
    if(buff == 'v')
    {
-      Serial.println(VERSION);
+      Serial.print(VERSION);
    }
 }
 
