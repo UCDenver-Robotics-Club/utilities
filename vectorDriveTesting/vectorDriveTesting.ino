@@ -78,6 +78,15 @@ void serialEvent()
    {
       Serial.print(VERSION);
    }
+   // send back the status of the encoders 
+   if(buff == 'i')
+   {
+      Serial.println("encoder data");
+      Serial.print("encoder 1:");
+      Serial.println(prizm.readEncoderCount(1));
+      Serial.print("encoder 2:");
+      Serial.println(prizm.readEncoderCount(2));
+   }
 }
 
 
