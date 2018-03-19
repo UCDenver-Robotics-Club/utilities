@@ -1,6 +1,7 @@
 import processing.serial.*;
 
 Serial robotChassis;
+boolean risingEdge=false;
 
 void setup()
 {
@@ -22,30 +23,39 @@ void setup()
 void draw()
 {
   background(0);
-  if(key > 0)
+  if(key > 0 && keyPressed)
   {
-    fill(0,255,0); // yello
+    fill(0,255,0); // yellow
     //String str = new String(key);
     text(key+"",10,90);
     //println(key); 
-    //robotChassis.write(key);
+    robotChassis.write(key);
+    println("running");
   }
-  
-  if(!keyPressed) // if no key is currently being pressed
+  else if(!keyPressed) // if no key is currently being pressed
   {
+    println("stopped");
+    robotChassis.write('x');
     fill(255,0,0); // red 
-    text("full stop",10,90);
+    text("full stop",45,90);
   }
 }
 
-void keyPressed()
-{
-  println(key); 
-  robotChassis.write(key);
-}
+/*
+  for some reason the keyReleased event is getting stuck
+  This is preventing the robot from moving
+  from what I can tell from google this is an issue with
+  proccesing which makes me really sad 
+*/
 
-void keyReleased()
-{
-  println("key up!");
-  robotChassis.write('x');  
-}
+//void keyPressed()
+//{
+//  println(key); 
+//  robotChassis.write(key);
+//}
+
+//void keyReleased()
+//{
+//  println("key up!");
+//  robotChassis.write('x');  
+//}
